@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="vendor/select2/select2.min.js"></script>
+
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+
+    <script src="js/main.js"></script>
+
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+<style>
+    tbody{
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+            <div class="wrap-login100" style="width:1623px ;">
+                <p class="font-weight-bold">The data in the table comes from the form submitted</p>
+                <table class="table table bordered table-striped" id="testTable">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Mobile</th>
+                            <th>Comments</th>
+                            <th>User E-mail</th>
+                            <th>From E-mail</th>
+                            <th>To E-mail </th>
+                            <th>Delivery Status </th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="demo">
+
+
+                    </tbody>
+                </table>
+                <a href="index.html">
+                    <button class="login100-form-btn" type="button"  style="margin-left: 1150px;"> 
+                        Home
+                    </button>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $.getJSON("https://spreadsheets.google.com/feeds/list/1cKtO_Sxzw52IdHkjqlLnWRDlyH69FSMMaTpAPAt5j9M/od6/public/values?alt=json", function (data) {
+
+            var sheetData = data.feed.entry;
+
+            var i;
+            for (i = 0; i < sheetData.length; i++) {
+
+                var name = data.feed.entry[i]['gsx$username']['$t'];
+                var mobile = data.feed.entry[i]['gsx$mobile']['$t'];
+                var email = data.feed.entry[i]['gsx$email']['$t'];
+                var comments = data.feed.entry[i]['gsx$comments']['$t'];
+                var delivery = data.feed.entry[i]['gsx$timestamp']['$t'];
+                var frome = "suryacool98@gmail.com";
+                var toe="hello@riskcovry.com";
+                
+
+                document.getElementById('demo').innerHTML += ('<tr>' + '<td>' + name + '</td>' + '<td>' + mobile + '</td>' + '<td>' + comments + '</td>' + '<td>' + email + '</td>' + '<td>' + frome + '</td>' + '<td>' + toe + '</td>' + '<td>' + delivery + '</td>' + '</tr>');
+
+            }
+        });
+
+
+    </script>
+
+
+
+</body>
+
+</html>
